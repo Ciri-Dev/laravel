@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class productosController extends Controller
 {
-    
+    public function getPDF()
+    {   
+        $name = "Juan Perez"; 
+        $pdf = Pdf::loadView('pdf_example', compact('name'));
+        return $pdf->stream('prueba.pdf');
+    }
+
     public function index()
     {
         return view('productos');
